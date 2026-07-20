@@ -12,21 +12,24 @@ app.get('/', (req, res) => {
 });
 
 app.post("/add", (req, res) => {
-  const { num1, num2 } = req.body;
+  const { a, b } = req.body;
 
-  if (typeof num1 !== "number" || typeof num2 !== "number") {
+  if (typeof a !== "number" || typeof b !== "number") {
     return res.status(400).json({
       message: "Both a and b must be numbers.",
     });
   }
 
   res.status(200).json({
-    result: num1 + num2,
+    result: a + b,
   });
 });
 
+// Only start the server when this file is run directly
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
+}
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+module.exports = app;
