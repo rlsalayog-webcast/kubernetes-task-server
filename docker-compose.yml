@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+    
+    # Defines a service named "kubernetes-task"
+    kubernetes-task:
+        # Assign a fixed name to the container instead of Docker generating one
+        container_name: kubernetes-task-server-container
+
+        # Build the Docker image from the local Dockerfile
+        build:
+            # Use the current directory as the build context
+            context: .
+            # Specify which Dockerfile to use for building the image
+            dockerfile: Dockerfile
+
+        # Tag the built image with this name and version
+        image: kubernetes-task-server:v1
+
+        # Map host port 3000 to container port 80 (Nginx) in Dockerfile
+        # Access the application at http://localhost:3000
+        ports:
+            - "3000:3000"
+
+        # Keep STDIN open for interactive use (optional)
+        stdin_open: true
+        # Allocate a pseudo-terminal (optional)
+        tty: true
+
+        # Automatically restart the container unless it was manually stopped
+        restart: unless-stopped
