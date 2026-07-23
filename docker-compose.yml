@@ -22,6 +22,11 @@ services:
         ports:
             - "3000:3000"
 
+        # Load environment variables from a .env file at runtime
+        # This file is excluded from the image via .dockerignore
+        env_file:
+            - .env
+
         # Keep STDIN open for interactive use (optional)
         stdin_open: true
         # Allocate a pseudo-terminal (optional)
