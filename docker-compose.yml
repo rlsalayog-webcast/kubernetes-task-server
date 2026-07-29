@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
     
     # Defines a service named "kubernetes-task"
